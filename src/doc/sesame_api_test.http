@@ -11,6 +11,8 @@ Content-Type: application/json
 ###
 
 # Update user
+# /users/{userId}
+# Note: Replace {userId} with the id of the user you want to update.
 PUT http://localhost:9000/users/c813eb88-a6b8-11ef-acd8-0242ac120003
 Content-Type: application/json
 
@@ -23,18 +25,26 @@ Content-Type: application/json
 ###
 
 # [SOFT] Delete user
+# /users/{userId}
+# Note: Replace {userId} with the id of the user you want to delete.
+# This is a soft delete. The user will not be permanently removed from the database, but their deleted date will be updated.
 DELETE http://localhost:9000/users/c813eb88-a6b8-11ef-acd8-0242ac120003
 Content-Type: application/json
 
 ###
 
 # Get a user by id
+# /users/{userId}
+# Note: Replace {userId} with the id of the user you want to get.
 GET http://localhost:9000/users/c813eb88-a6b8-11ef-acd8-0242ac120003
 Content-Type: application/json
 
 ###
 
 # Create a work entry
+# /work-entries/add
+# Note: Replace {userId} with the id of the user you want to associate with the work entry.
+# The user_id should be the UUID of the user, not their id.
 POST http://localhost:9000/work-entries/add
 Content-Type: application/json
 
@@ -46,6 +56,7 @@ Content-Type: application/json
 
 # Update work entry
 # /work-entries/{workEntryUuid}/{userUuid}
+# Note: Replace {workEntryUuid} with the UUID of the work entry you want to update, and {userUuid} with the UUID of the user associated with the work entry.
 PUT http://localhost:9000/work-entries/02667fb2-a6b9-11ef-894f-0242ac120003/c813eb88-a6b8-11ef-acd8-0242ac120003
 Content-Type: application/json
 
@@ -59,6 +70,7 @@ Content-Type: application/json
 
 # [SAFE] Delete work entry
 # /work-entries/{workEntryUuid}/{userUuid}
+# Note: Replace {workEntryUuid} with the UUID of the work entry you want to delete, and {userUuid} with the UUID of the user associated with the work entry.
 DELETE http://localhost:9000/work-entries/02667fb2-a6b9-11ef-894f-0242ac120003/c813eb88-a6b8-11ef-acd8-0242ac120003
 Content-Type: application/json
 
@@ -66,12 +78,14 @@ Content-Type: application/json
 
 # Get work entry
 # /work-entries/{workEntryUuid}/{userUuid}
+# Note: Replace {workEntryUuid} with the UUID of the work entry you want to get, and {userUuid} with the UUID of the user associated with the work entry.
 GET http://localhost:9000/work-entries/02667fb2-a6b9-11ef-894f-0242ac120003/c813eb88-a6b8-11ef-acd8-0242ac120003
 Content-Type: application/json
 
 ###
 
 # Login return token as is correctly authenticated
+# Check user name and password of updated user, and replace values
 POST http://localhost:9000/login_check
 Content-Type: application/json
 
