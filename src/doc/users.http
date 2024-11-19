@@ -1,0 +1,33 @@
+# Create a user
+POST http://localhost:9000/users/add
+Content-Type: application/json
+
+{
+  "name": "testName3",
+  "email": "testlluis@gmail.com",
+  "password": "default_password_3"
+}
+
+###
+
+# Update a user
+PUT http://localhost:9000/users/cfc7426c-a6a9-11ef-8544-0242ac120003
+Content-Type: application/json
+
+{
+  "name": "updatedName",
+  "email": "updatedEmail666@gmail.com",
+  "password": "new_secure_password_1"
+}
+
+###
+
+# Delete a user
+DELETE http://localhost:9000/users/cfc7426c-a6a9-11ef-8544-0242ac120003
+Content-Type: application/json
+
+###
+
+# Get a user by id
+GET http://localhost:9000/users/cfc7426c-a6a9-11ef-8544-0242ac120003
+Content-Type: application/json

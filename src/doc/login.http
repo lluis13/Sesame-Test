@@ -1,0 +1,10 @@
+# Login return token as is correctly authenticated
+POST http://localhost:9000/login_check
+Content-Type: application/json
+
+{
+  "username": "updatedEmail666@gmail.com",
+  "password": "new_secure_password_1"
+}
+
+###

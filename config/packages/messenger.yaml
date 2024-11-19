@@ -1,0 +1,12 @@
+framework:
+    messenger:
+        transports:
+        default_bus: command.bus
+        buses:
+            command.bus:
+            event.bus:
+                default_middleware:
+                    allow_no_handlers: true
+            query.bus:
+
+

@@ -1,0 +1,60 @@
+# Create a work entry (C from CRUD)
+POST http://localhost:9000/work-entries/add
+Content-Type: application/json
+
+{
+  "user_id": "cfc7426c-a6a9-11ef-8544-0242ac120003"
+}
+
+###
+
+# Update work entry (U from CRUD)
+PUT http://localhost:9000/work-entries/08911e60-a6aa-11ef-bf86-0242ac120003/cfc7426c-a6a9-11ef-8544-0242ac120003
+Content-Type: application/json
+
+{
+  "start_date": "2024-11-19T15:00:00",
+  "end_date": "2024-11-19T16:00:00"
+}
+
+
+###
+
+# Delete work entry (D from CRUD)
+DELETE http://localhost:9000/work-entries/08911e60-a6aa-11ef-bf86-0242ac120003/cfc7426c-a6a9-11ef-8544-0242ac120003
+Content-Type: application/json
+
+###
+
+# Get work entry (R from CRUD)
+GET http://localhost:9000/work-entries/08911e60-a6aa-11ef-bf86-0242ac120003/cfc7426c-a6a9-11ef-8544-0242ac120003
+Content-Type: application/json
+
+###
+
+# Start work entry
+POST http://localhost:9000/api/work-entries/start_work_entry
+Content-Type: application/json,
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNDM2OTIsImV4cCI6MTczMjA0NzI5Miwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXBkYXRlZEVtYWlsNjY2QGdtYWlsLmNvbSJ9.nJgHShYPI6GqB7qS18MI_QbNWlt8oe4w8Ris73GDTGlgVV_faqlX3SBvBG7lDGyJpCM2eGePW_yTeIb-dJudURlfK9sFk3tALweiOPL7RllqTUeO5uv98kjQReU9bo3TqV-GeIvLZ19c4Y9CDMQ7wfKn_HvlYNLeA-P2PDlQCT3eBGE_dIDRi4LdB80v3gNAPKVRxls5pMgen6cYz7ge9DA0b9xm1uKmtJm4bE41KojJDwl6uk4hj8JuuvEgWP88TR1hX8rCMDzyZassVT0SFnLUw6TJDHn8zYfMdWLrDHKaDyYo2xfH7StGlYD4cvqzu3qJWnRnFVHHZnZ-PYu4fw
+
+{
+}
+
+###
+
+
+# End work entry
+POST http://localhost:9000/api/work-entries/end_work_entry/ef3c28d6-a6ab-11ef-af7f-0242ac120003
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNDM2OTIsImV4cCI6MTczMjA0NzI5Miwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXBkYXRlZEVtYWlsNjY2QGdtYWlsLmNvbSJ9.nJgHShYPI6GqB7qS18MI_QbNWlt8oe4w8Ris73GDTGlgVV_faqlX3SBvBG7lDGyJpCM2eGePW_yTeIb-dJudURlfK9sFk3tALweiOPL7RllqTUeO5uv98kjQReU9bo3TqV-GeIvLZ19c4Y9CDMQ7wfKn_HvlYNLeA-P2PDlQCT3eBGE_dIDRi4LdB80v3gNAPKVRxls5pMgen6cYz7ge9DA0b9xm1uKmtJm4bE41KojJDwl6uk4hj8JuuvEgWP88TR1hX8rCMDzyZassVT0SFnLUw6TJDHn8zYfMdWLrDHKaDyYo2xfH7StGlYD4cvqzu3qJWnRnFVHHZnZ-PYu4fw
+
+{
+
+}
+
+###
+
+# Get work entry (R from CRUD)
+GET http://localhost:9000/api/work-entries/get_all_from_user
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNDM2OTIsImV4cCI6MTczMjA0NzI5Miwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidXBkYXRlZEVtYWlsNjY2QGdtYWlsLmNvbSJ9.nJgHShYPI6GqB7qS18MI_QbNWlt8oe4w8Ris73GDTGlgVV_faqlX3SBvBG7lDGyJpCM2eGePW_yTeIb-dJudURlfK9sFk3tALweiOPL7RllqTUeO5uv98kjQReU9bo3TqV-GeIvLZ19c4Y9CDMQ7wfKn_HvlYNLeA-P2PDlQCT3eBGE_dIDRi4LdB80v3gNAPKVRxls5pMgen6cYz7ge9DA0b9xm1uKmtJm4bE41KojJDwl6uk4hj8JuuvEgWP88TR1hX8rCMDzyZassVT0SFnLUw6TJDHn8zYfMdWLrDHKaDyYo2xfH7StGlYD4cvqzu3qJWnRnFVHHZnZ-PYu4fw

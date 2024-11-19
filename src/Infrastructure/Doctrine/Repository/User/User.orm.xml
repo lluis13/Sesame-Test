@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Model\User\User" table="user" repository-class="App\Infrastructure\Doctrine\Repository\User\MysqlUserRepository">
+        <id name="id" type="uuid_binary" column="id" length="16">
+            <generator strategy="NONE"/>
+        </id>
+        <embedded name="name" class="App\Domain\Model\User\Name" use-column-prefix="false" />
+        <embedded name="email" class="App\Domain\Model\User\Email" use-column-prefix="false" />
+        <embedded name="password" class="App\Domain\Model\User\Password" use-column-prefix="false" />
+        <field name="createdAt" type="datetime_immutable" />
+        <field name="updatedAt" type="datetime_immutable" />
+        <field name="deletedAt" type="datetime_immutable" nullable="true" />
+        <one-to-many field="workEntries" target-entity="App\Domain\Model\WorkEntry\WorkEntry" mapped-by="user">
+            <cascade>
+                    <cascade-persist/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,78 @@
+# Routes for UserController
+create_user:
+  path: /users/add
+  controller: App\Infrastructure\User\Controller\UserController::createUser
+  methods: [POST]
+
+update_user:
+  path: /users/{uuid}
+  controller: App\Infrastructure\User\Controller\UserController::updateUser
+  methods: [PUT]
+  requirements:
+    uuid: '[0-9a-fA-F\-]{36}'
+
+delete_user:
+  path: /users/{uuid}
+  controller: App\Infrastructure\User\Controller\UserController::deleteUser
+  methods: [DELETE]
+  requirements:
+    uuid: '[0-9a-fA-F\-]{36}'
+
+get_user:
+  path: /users/{uuid}
+  controller: App\Infrastructure\User\Controller\UserController::getUser
+  methods: [GET]
+  requirements:
+    uuid: '[0-9a-fA-F\-]{36}'
+
+# Routes for WorkEntryController
+create_work_entry:
+  path: /work-entries/add
+  controller: App\Infrastructure\WorkEntry\Controller\WorkEntryController::createWorkEntry
+  methods: [POST]
+
+update_work_entry:
+  path: /work-entries/{workEntryUuid}/{userUuid}
+  controller: App\Infrastructure\WorkEntry\Controller\WorkEntryController::updateWorkEntry
+  methods: [PUT]
+  requirements:
+    workEntryUuid: '[0-9a-fA-F\-]{36}'
+    userUuid: '[0-9a-fA-F\-]{36}'
+
+delete_work_entry:
+  path: /work-entries/{workEntryUuid}/{userUuid}
+  controller: App\Infrastructure\WorkEntry\Controller\WorkEntryController::deleteWorkEntry
+  methods: [DELETE]
+  requirements:
+    workEntryUuid: '[0-9a-fA-F\-]{36}'
+    userUuid: '[0-9a-fA-F\-]{36}'
+
+get_work_entry:
+  path: /work-entries/{workEntryUuid}/{userUuid}
+  controller: App\Infrastructure\WorkEntry\Controller\WorkEntryController::getWorkEntry
+  methods: [GET]
+  requirements:
+    workEntryUuid: '[0-9a-fA-F\-]{36}'
+    userUuid: '[0-9a-fA-F\-]{36}'
+
+start_work_entry:
+  path: /api/work-entries/start_work_entry
+  controller: App\Infrastructure\WorkEntry\Controller\WorkEntryController::startWorkEntry
+  methods: [POST]
+
+end_work_entry:
+  path: /api/work-entries/end_work_entry/{workEntryUuid}
+  controller: App\Infrastructure\WorkEntry\Controller\WorkEntryController::endWorkEntry
+  methods: [POST]
+  requirements:
+    workEntryUuid: '[0-9a-fA-F\-]{36}'
+
+get_all_work_entries_by_user:
+  path: /api/work-entries/get_all_from_user
+  controller: App\Infrastructure\WorkEntry\Controller\WorkEntryController::getWorkEntries
+  methods: [GET]
+
+# Login route
+api_login_check:
+  path: /login_check
+  methods: [POST]

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://schema.phpunit.de PHPUnit-11.0.xsd"
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        verbose="true"
+        stopOnFailure="true"
+>
+
+    <coverage processUncoveredFiles="false">
+        <include>
+            <directory suffix=".php">src/</directory>
+        </include>
+    </coverage>
+
+    <testsuites>
+        <testsuite name="Domain Model Tests">
+            <directory suffix="Test.php">src/Tests/Domain/Model/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
