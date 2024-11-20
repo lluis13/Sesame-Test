@@ -14,4 +14,11 @@ make docker-compose-build-up
 make run-tests
 ```
 4. Execute the http requests from sesame-api/src/doc/sesame_api_test.http [step by step information inside the file]
+
+5. If want to check the database:
 ```
+Host: localhost
+Port: 3306
+User: app
+Password: p@ssw0rd
+Schema: app
