@@ -14,6 +14,7 @@ use App\Application\Event\WorkEntry\WorkEntryStartedEvent;
 use App\Application\Event\WorkEntry\WorkEntryUpdatedEvent;
 use App\Application\EventInterface;
 use App\Domain\Model\WorkEntry\WorkEntry;
+use App\Domain\Model\WorkEntry\WorkEntryTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -142,14 +143,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function startWorkEntry(WorkEntry $workEntry): void
     {
-        $workEntry->update($workEntry->startDate(), $workEntry->endDate());
+        $workEntry->update($workEntry->workEntryTime());
 
         $this->getWorkEntries()->add($workEntry);
 
         $this->recordEvent(new WorkEntryStartedEvent(
                 $workEntry->id(),
                 $this->id(),
-                $workEntry->startDate(),
+                $workEntry->workEntryTime()->getStartDate(),
             ),
         );
     }
@@ -175,7 +176,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->recordEvent(new WorkEntryCreatedEvent(
                 $workEntry->id(),
                 $this->id(),
-                $workEntry->startDate(),
+                $workEntry->workEntryTime()->getStartDate(),
             ),
         );
     }
@@ -196,18 +197,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function updateWorkEntry(
         WorkEntry $workEntry,
-        DateTimeImmutable $startDate,
-        DateTimeImmutable $endDate,
+        WorkEntryTime $workEntryTime
     ): void {
         /** @var WorkEntry $entry */
         foreach ($this->getWorkEntries() as $entry) {
             if ($entry->id()->equals($workEntry->id())) {
-                $entry->update($startDate, $endDate);
+                $entry->update($workEntryTime);
 
                 $this->recordEvent(new WorkEntryUpdatedEvent(
                         $workEntry->id(),
-                        $startDate,
-                        $endDate,
+                        $workEntryTime->getStartDate(),
+                        $workEntryTime->getEndDate(),
                     ),
                 );
 

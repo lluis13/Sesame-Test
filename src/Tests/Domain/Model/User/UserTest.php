@@ -17,6 +17,7 @@ use App\Application\Event\WorkEntry\WorkEntryEndEvent;
 use App\Application\Event\WorkEntry\WorkEntryCreatedEvent;
 use App\Application\Event\WorkEntry\WorkEntryDeletedEvent;
 use App\Application\Event\WorkEntry\WorkEntryUpdatedEvent;
+use App\Domain\Model\WorkEntry\WorkEntryTime;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -72,7 +73,9 @@ class UserTest extends TestCase
         $user = $this->createUser();
 
         $workEntryId = Uuid::uuid1();
-        $workEntry = new WorkEntry($workEntryId, $user);
+        $startDate = new DateTimeImmutable('2024-11-20 09:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($workEntryId, $user, $workEntryTime);
 
         $this->assertEmpty($user->getWorkEntries());
         $user->startWorkEntry($workEntry);
@@ -85,12 +88,15 @@ class UserTest extends TestCase
         $this->assertInstanceOf(UserCreatedEvent::class, $events[0]);
         $this->assertInstanceOf(WorkEntryStartedEvent::class, $events[1]);
     }
+
     public function testEndWorkEntry(): void
     {
         $user = $this->createUser();
 
         $workEntryId = Uuid::uuid1();
-        $workEntry = new WorkEntry($workEntryId, $user);
+        $startDate = new DateTimeImmutable('2024-11-20 08:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($workEntryId, $user, $workEntryTime);
 
         $user->startWorkEntry($workEntry);
 
@@ -98,11 +104,11 @@ class UserTest extends TestCase
         $this->assertCount(1, $workEntries);
         $this->assertSame($workEntry, $workEntries->first());
 
-        $this->assertNull($workEntry->endDate());
+        $this->assertNull($workEntry->workEntryTime()->getEndDate());
 
         $user->endWorkEntry($workEntry);
 
-        $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->endDate());
+        $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->workEntryTime()->getEndDate());
 
         $events = $user->getDomainEvents();
         $this->assertInstanceOf(UserCreatedEvent::class, $events[0]);
@@ -114,8 +120,10 @@ class UserTest extends TestCase
     {
         $user = $this->createUser();
 
-        $workEntryId = Uuid::uuid1();
-        $workEntry = new WorkEntry($workEntryId, $user);
+        $workEntryId   = Uuid::uuid1();
+        $startDate     = new DateTimeImmutable('2024-11-20 09:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry     = new WorkEntry($workEntryId, $user, $workEntryTime);
 
         $this->assertEmpty($user->getWorkEntries());
 
@@ -135,7 +143,9 @@ class UserTest extends TestCase
         $user = $this->createUser();
 
         $workEntryId = Uuid::uuid1();
-        $workEntry = new WorkEntry($workEntryId, $user);
+        $startDate = new DateTimeImmutable('2024-11-20 09:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($workEntryId, $user, $workEntryTime);
 
         $user->createWorkEntry($workEntry);
 
@@ -157,7 +167,9 @@ class UserTest extends TestCase
         $user = $this->createUser();
 
         $workEntryId = Uuid::uuid1();
-        $workEntry = new WorkEntry($workEntryId, $user);
+        $startDate = new DateTimeImmutable('2024-11-20 09:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($workEntryId, $user, $workEntryTime);
 
         $user->createWorkEntry($workEntry);
 
@@ -165,11 +177,12 @@ class UserTest extends TestCase
 
         $newStartDate = new DateTimeImmutable('2024-11-20 09:00:00');
         $newEndDate = new DateTimeImmutable('2024-11-20 17:00:00');
+        $newWorkEntryTime = new WorkEntryTime($newStartDate, $newEndDate);
 
-        $user->updateWorkEntry($workEntry, $newStartDate, $newEndDate);
+        $user->updateWorkEntry($workEntry, $newWorkEntryTime);
 
-        $this->assertSame($newStartDate, $workEntry->startDate());
-        $this->assertSame($newEndDate, $workEntry->endDate());
+        $this->assertSame($newStartDate, $workEntry->workEntryTime()->getStartDate());
+        $this->assertSame($newEndDate, $workEntry->workEntryTime()->getEndDate());
 
         $events = $user->getDomainEvents();
         $this->assertInstanceOf(UserCreatedEvent::class, $events[0]);

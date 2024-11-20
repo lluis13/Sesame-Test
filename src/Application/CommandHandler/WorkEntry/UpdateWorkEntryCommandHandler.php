@@ -8,6 +8,7 @@ use App\Application\Command\WorkEntry\UpdateWorkEntryCommand;
 use App\Domain\Model\Service\EventPublisher;
 use App\Domain\Model\User\UserRepositoryInterface;
 use App\Domain\Model\WorkEntry\WorkEntryRepositoryInterface;
+use App\Domain\Model\WorkEntry\WorkEntryTime;
 use App\Infrastructure\Bus\CommandHandlerInterface;
 use Ramsey\Uuid\Uuid;
 
@@ -28,7 +29,7 @@ final readonly class UpdateWorkEntryCommandHandler implements CommandHandlerInte
         $user = $this->userRepository->findByIdOrFail(Uuid::fromString($command->userUuid));
         $workEntry = $this->workEntryRepository->findByIdOrFail(Uuid::fromString($command->workEntryUuid));
 
-        $user->updateWorkEntry($workEntry, $command->startDate, $command->endDate);
+        $user->updateWorkEntry($workEntry, new WorkEntryTime($command->startDate, $command->endDate));
 
         $this->userRepository->save($user);
 

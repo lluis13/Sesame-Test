@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Domain\Model\User;
 
 use Webmozart\Assert\Assert;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @author Lluís Puig Ferrer <lluis_96_13@hotmail.com>

@@ -13,7 +13,7 @@ Content-Type: application/json
 # Update user
 # /users/{userId}
 # Note: Replace {userId} with the id of the user you want to update.
-PUT http://localhost:9000/users/c813eb88-a6b8-11ef-acd8-0242ac120003
+PUT http://localhost:9000/users/f996ec30-a719-11ef-ada5-0242ac130003
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 # /users/{userId}
 # Note: Replace {userId} with the id of the user you want to delete.
 # This is a soft delete. The user will not be permanently removed from the database, but their deleted date will be updated.
-DELETE http://localhost:9000/users/c813eb88-a6b8-11ef-acd8-0242ac120003
+DELETE http://localhost:9000/users/f996ec30-a719-11ef-ada5-0242ac130003
 Content-Type: application/json
 
 ###
@@ -36,7 +36,7 @@ Content-Type: application/json
 # Get a user by id
 # /users/{userId}
 # Note: Replace {userId} with the id of the user you want to get.
-GET http://localhost:9000/users/c813eb88-a6b8-11ef-acd8-0242ac120003
+GET http://localhost:9000/users/f996ec30-a719-11ef-ada5-0242ac130003
 Content-Type: application/json
 
 ###
@@ -49,7 +49,7 @@ POST http://localhost:9000/work-entries/add
 Content-Type: application/json
 
 {
-"user_id": "391af0c6-a6c6-11ef-902b-0242ac120003"
+"user_id": "f996ec30-a719-11ef-ada5-0242ac130003"
 }
 
 ###
@@ -57,7 +57,7 @@ Content-Type: application/json
 # Update work entry
 # /work-entries/{workEntryUuid}/{userUuid}
 # Note: Replace {workEntryUuid} with the UUID of the work entry you want to update, and {userUuid} with the UUID of the user associated with the work entry.
-PUT http://localhost:9000/work-entries/02667fb2-a6b9-11ef-894f-0242ac120003/c813eb88-a6b8-11ef-acd8-0242ac120003
+PUT http://localhost:9000/work-entries/1631680c-a71a-11ef-9872-0242ac130003/f996ec30-a719-11ef-ada5-0242ac130003
 Content-Type: application/json
 
 {
@@ -71,7 +71,7 @@ Content-Type: application/json
 # [SAFE] Delete work entry
 # /work-entries/{workEntryUuid}/{userUuid}
 # Note: Replace {workEntryUuid} with the UUID of the work entry you want to delete, and {userUuid} with the UUID of the user associated with the work entry.
-DELETE http://localhost:9000/work-entries/02667fb2-a6b9-11ef-894f-0242ac120003/c813eb88-a6b8-11ef-acd8-0242ac120003
+DELETE http://localhost:9000/work-entries/1631680c-a71a-11ef-9872-0242ac130003/f996ec30-a719-11ef-ada5-0242ac130003
 Content-Type: application/json
 
 ###
@@ -79,7 +79,7 @@ Content-Type: application/json
 # Get work entry
 # /work-entries/{workEntryUuid}/{userUuid}
 # Note: Replace {workEntryUuid} with the UUID of the work entry you want to get, and {userUuid} with the UUID of the user associated with the work entry.
-GET http://localhost:9000/work-entries/02667fb2-a6b9-11ef-894f-0242ac120003/c813eb88-a6b8-11ef-acd8-0242ac120003
+GET http://localhost:9000/work-entries/1631680c-a71a-11ef-9872-0242ac130003/f996ec30-a719-11ef-ada5-0242ac130003
 Content-Type: application/json
 
 ###
@@ -101,7 +101,7 @@ Content-Type: application/json
 # Bearer {token}
 POST http://localhost:9000/api/work-entries/start_work_entry
 Content-Type: application/json,
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNTAwMjMsImV4cCI6MTczMjA1MzYyMywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdExsdWlzVXBkYXRlZEBnbWFpbC5jb20ifQ.ux28qWxNZAECzGyAlMCIECHA_VJKS6Cfc_WiB9eRXvlgeUG2LjBeuiwAjodRMXycFyONK7aypI3y7qvCgvNSL4SkH-_BUed3f-XjFM6JasJ0ZYhxHlzRRCAd_aiijtfCLUSB98EEFaZzIm2rXk0qOeS0i8mtdxi8-zoVy26-k-Wj0ff6TE404gOhGiftsDeBBmKTMEXm3XhpJo7ONjvLY75lXzH4o4SqK4ugWb9ugt3ISiWpYNnarxAmm2UpeB6JWnGOVmBKzb1tr_MRLVaouWueUzrG74Dw1lYDC7qwF_I1g08s-9KAxQcCTeyOQaiRhfIZGR5Djowuv4AnKgfVRA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwOTE2NjMsImV4cCI6MTczMjA5NTI2Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdExsdWlzVXBkYXRlZEBnbWFpbC5jb20ifQ.MqdIhqnzceEAq4I0-46eZirKk0JELm5EiZodpjyNSiwHqlYYLphR4u0cQ6ubRYKqJbDt6bso0hnjeHqisKxHy1YiH03FqN1pjz2f1h3u1CxyzcYVaxKP4Tx0Tr5aFbicJWorAYftR01DE6WOe_jcO_fWfem5TH6LkwQWmz8ZEF6kLaapVBq3Ec1PiuajlvXoVH4UJTL-yUUAK0yQt-mvY9ZzqOllFzEI52-7AH3UleiSU-u3OSrLChR_3b1-4zWiRFt92ivhIQ-idyrsrAiBikn2qm9SR01cuUIK8p1slLVKBBEHtAAokgGUUt5DkO-4giobYQ8w_il1GZtdAqwZTw
 
 {
 }
@@ -112,9 +112,9 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNTAwM
 # End work entry
 # /api/work-entries/end_work_entry/{workEntryUuid}
 # Change what is after Bearer for the token used in http request executed before
-POST http://localhost:9000/api/work-entries/end_work_entry/9bc1dc6a-a6b9-11ef-ad1d-0242ac120003
+POST http://localhost:9000/api/work-entries/end_work_entry/1631680c-a71a-11ef-9872-0242ac130003
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNTAwMjMsImV4cCI6MTczMjA1MzYyMywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdExsdWlzVXBkYXRlZEBnbWFpbC5jb20ifQ.ux28qWxNZAECzGyAlMCIECHA_VJKS6Cfc_WiB9eRXvlgeUG2LjBeuiwAjodRMXycFyONK7aypI3y7qvCgvNSL4SkH-_BUed3f-XjFM6JasJ0ZYhxHlzRRCAd_aiijtfCLUSB98EEFaZzIm2rXk0qOeS0i8mtdxi8-zoVy26-k-Wj0ff6TE404gOhGiftsDeBBmKTMEXm3XhpJo7ONjvLY75lXzH4o4SqK4ugWb9ugt3ISiWpYNnarxAmm2UpeB6JWnGOVmBKzb1tr_MRLVaouWueUzrG74Dw1lYDC7qwF_I1g08s-9KAxQcCTeyOQaiRhfIZGR5Djowuv4AnKgfVRA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwOTE2NjMsImV4cCI6MTczMjA5NTI2Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdExsdWlzVXBkYXRlZEBnbWFpbC5jb20ifQ.MqdIhqnzceEAq4I0-46eZirKk0JELm5EiZodpjyNSiwHqlYYLphR4u0cQ6ubRYKqJbDt6bso0hnjeHqisKxHy1YiH03FqN1pjz2f1h3u1CxyzcYVaxKP4Tx0Tr5aFbicJWorAYftR01DE6WOe_jcO_fWfem5TH6LkwQWmz8ZEF6kLaapVBq3Ec1PiuajlvXoVH4UJTL-yUUAK0yQt-mvY9ZzqOllFzEI52-7AH3UleiSU-u3OSrLChR_3b1-4zWiRFt92ivhIQ-idyrsrAiBikn2qm9SR01cuUIK8p1slLVKBBEHtAAokgGUUt5DkO-4giobYQ8w_il1GZtdAqwZTw
 
 {
 
@@ -126,4 +126,4 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNTAwM
 # Change what is after Bearer for the token used in http request executed before
 GET http://localhost:9000/api/work-entries/get_all_from_user
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwNTAwMjMsImV4cCI6MTczMjA1MzYyMywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdExsdWlzVXBkYXRlZEBnbWFpbC5jb20ifQ.ux28qWxNZAECzGyAlMCIECHA_VJKS6Cfc_WiB9eRXvlgeUG2LjBeuiwAjodRMXycFyONK7aypI3y7qvCgvNSL4SkH-_BUed3f-XjFM6JasJ0ZYhxHlzRRCAd_aiijtfCLUSB98EEFaZzIm2rXk0qOeS0i8mtdxi8-zoVy26-k-Wj0ff6TE404gOhGiftsDeBBmKTMEXm3XhpJo7ONjvLY75lXzH4o4SqK4ugWb9ugt3ISiWpYNnarxAmm2UpeB6JWnGOVmBKzb1tr_MRLVaouWueUzrG74Dw1lYDC7qwF_I1g08s-9KAxQcCTeyOQaiRhfIZGR5Djowuv4AnKgfVRA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzIwOTA3MjYsImV4cCI6MTczMjA5NDMyNiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdExsdWlzVXBkYXRlZEBnbWFpbC5jb20ifQ.2NnpbQeNvsieGL4Rq1p41YHkfR4XIYEM4oXAlrz0Ll5ta31uwwrgbv4FTQPaZzFjCz862P2JXjWIRuq_9RJuhMwDWq8Xm5MyaQFh4umoH8koZU3eMtLKlZtlK4lpFcfCqVoxelFJ8ll-bbmoTpwjtr2VsjCEtby5-lilCjDbyrc3ym9rCXxgjje_zE2LBAhlF0OqFBwbudnXOdpZ8m8dORygAR-aHarGRKpeQPHZMKQl6voTIpxNrXeH-Y9_V8W8ywVZHTb4gsky1zIZb7aeEIb9Qo0fNpsTS043iqS1Ib55CnLO-FkqR0Osu3JvptLR-Vqpj9xLBqMOdDDlyKfthg

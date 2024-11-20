@@ -10,8 +10,7 @@
         <many-to-one field="user" target-entity="App\Domain\Model\User\User" inversed-by="workEntries">
             <join-column name="user_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
-        <field name="startDate" type="datetime_immutable" />
-        <field name="endDate" type="datetime_immutable" nullable="true" />
+        <embedded name="workEntryTime" class="App\Domain\Model\WorkEntry\WorkEntryTime" use-column-prefix="false" />
         <field name="createdAt" type="datetime_immutable" />
         <field name="updatedAt" type="datetime_immutable" />
         <field name="deletedAt" type="datetime_immutable" nullable="true" />

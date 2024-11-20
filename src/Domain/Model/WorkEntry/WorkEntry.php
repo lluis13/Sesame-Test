@@ -17,9 +17,7 @@ class WorkEntry
 
     private User $user;
 
-    private DateTimeImmutable $startDate;
-
-    private ?DateTimeImmutable $endDate;
+    private WorkEntryTime $workEntryTime;
 
     private DateTimeImmutable $createdAt;
 
@@ -27,15 +25,14 @@ class WorkEntry
 
     private ?DateTimeImmutable $deletedAt;
 
-    public function __construct(Uuid $uuid, User $user)
+    public function __construct(Uuid $uuid, User $user, WorkEntryTime $workEntryTime)
     {
-        $this->id        = $uuid;
-        $this->user      = $user;
-        $this->startDate = new DateTimeImmutable();
-        $this->endDate   = null;
-        $this->createdAt = new DateTimeImmutable();
-        $this->updatedAt = new DateTimeImmutable();
-        $this->deletedAt = null;
+        $this->id            = $uuid;
+        $this->user          = $user;
+        $this->workEntryTime = $workEntryTime;
+        $this->createdAt     = new DateTimeImmutable();
+        $this->updatedAt     = new DateTimeImmutable();
+        $this->deletedAt     = null;
     }
 
     public function id(): Uuid
@@ -43,14 +40,9 @@ class WorkEntry
         return $this->id;
     }
 
-    public function startDate(): DateTimeImmutable
+    public function workEntryTime(): WorkEntryTime
     {
-        return $this->startDate;
-    }
-
-    public function endDate(): ?DateTimeImmutable
-    {
-        return $this->endDate;
+        return $this->workEntryTime;
     }
 
     public function updatedAt(): DateTimeImmutable
@@ -58,13 +50,10 @@ class WorkEntry
         return $this->updatedAt;
     }
 
-    public function update(
-        DateTimeImmutable $startDate,
-        ?DateTimeImmutable $endDate
-    ): void {
-        $this->startDate = $startDate;
-        $this->endDate   = $endDate;
-        $this->updatedAt = new DateTimeImmutable();
+    public function update(WorkEntryTime $workEntryTime): void
+    {
+        $this->workEntryTime = $workEntryTime;
+        $this->updatedAt     = new DateTimeImmutable();
     }
 
     public function delete(): void
@@ -80,8 +69,8 @@ class WorkEntry
 
     public function end(): void
     {
-        $this->endDate   = new DateTimeImmutable();
-        $this->updatedAt = new DateTimeImmutable();
-
+        $endDate             = new DateTimeImmutable();
+        $this->workEntryTime = new WorkEntryTime($this->workEntryTime->getStartDate(), $endDate);
+        $this->updatedAt     = $endDate;
     }
 }

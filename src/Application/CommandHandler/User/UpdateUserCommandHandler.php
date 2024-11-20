@@ -12,7 +12,6 @@ use App\Domain\Model\User\Password;
 use App\Domain\Model\User\UserRepositoryInterface;
 use App\Infrastructure\Bus\CommandHandlerInterface;
 use Ramsey\Uuid\Uuid;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * @author Lluís Puig Ferrer <lluis_96_13@hotmail.com>

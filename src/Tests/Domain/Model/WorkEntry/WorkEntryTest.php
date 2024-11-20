@@ -9,6 +9,7 @@ use App\Domain\Model\User\Name;
 use App\Domain\Model\User\Password;
 use App\Domain\Model\User\User;
 use App\Domain\Model\WorkEntry\WorkEntry;
+use App\Domain\Model\WorkEntry\WorkEntryTime;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -23,13 +24,15 @@ class WorkEntryTest extends TestCase
     {
         $user = $this->createUser();
         $uuid = Uuid::uuid1();
-        $workEntry = new WorkEntry($uuid, $user);
+        $startDate = new DateTimeImmutable('2024-11-20 09:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($uuid, $user, $workEntryTime);
 
         $this->assertInstanceOf(WorkEntry::class, $workEntry);
         $this->assertSame($uuid, $workEntry->id());
-        $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->startDate());
+        $this->assertSame($startDate, $workEntry->workEntryTime()->getStartDate());
         $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->updatedAt());
-        $this->assertNull($workEntry->endDate());
+        $this->assertNull($workEntry->workEntryTime()->getEndDate());
         $this->assertNull($workEntry->deletedAt());
     }
 
@@ -37,15 +40,15 @@ class WorkEntryTest extends TestCase
     {
         $user = $this->createUser();
         $uuid = Uuid::uuid1();
-        $workEntry = new WorkEntry($uuid, $user);
-
         $startDate = new DateTimeImmutable('2024-11-20 09:00:00');
-        $endDate = new DateTimeImmutable('2024-11-20 17:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($uuid, $user, $workEntryTime);
+        $newEndDate = new DateTimeImmutable('2024-11-20 17:00:00');
+        $newWorkEntryTime = new WorkEntryTime($startDate, $newEndDate);
+        $workEntry->update($newWorkEntryTime);
 
-        $workEntry->update($startDate, $endDate);
-
-        $this->assertSame($startDate, $workEntry->startDate());
-        $this->assertSame($endDate, $workEntry->endDate());
+        $this->assertEquals($startDate, $workEntry->workEntryTime()->getStartDate());
+        $this->assertEquals($newEndDate, $workEntry->workEntryTime()->getEndDate());
         $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->updatedAt());
     }
 
@@ -53,7 +56,9 @@ class WorkEntryTest extends TestCase
     {
         $user = $this->createUser();
         $uuid = Uuid::uuid1();
-        $workEntry = new WorkEntry($uuid, $user);
+        $startDate = new DateTimeImmutable('2024-11-20 09:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($uuid, $user, $workEntryTime);
 
         $workEntry->delete();
 
@@ -61,18 +66,18 @@ class WorkEntryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->deletedAt());
     }
 
-    public function testEnd(): void
-    {
+    public function testEnd(): void {
         $user = $this->createUser();
         $uuid = Uuid::uuid1();
-        $workEntry = new WorkEntry($uuid, $user);
+        $startDate = new DateTimeImmutable('2024-11-20 07:00:00');
+        $workEntryTime = new WorkEntryTime($startDate);
+        $workEntry = new WorkEntry($uuid, $user, $workEntryTime);
 
         $workEntry->end();
 
-        $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->endDate());
-        $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->updatedAt());
+        $this->assertInstanceOf(DateTimeImmutable::class, $workEntry->workEntryTime()->getEndDate());
+        $this->assertSame($workEntry->workEntryTime()->getEndDate(), $workEntry->updatedAt());
     }
-
 
     private function createUser(): User
     {

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 namespace App\Domain\Model\WorkEntry;
-use App\Domain\Model\User\User;
 use Ramsey\Uuid\Uuid;
 
 /**
